@@ -180,11 +180,10 @@ const App: React.FC = () => {
       loading: true, 
       generatingImage: false,
       generatedImage: null,
-      result: null, 
-      replyResult: null, 
-      auditResult: null, 
+      result: null,
+      replyResult: null,
       auditResult: null,
-      nicheResult: null, 
+      nicheResult: null,
       ideaResult: null,
       error: null 
     }));
