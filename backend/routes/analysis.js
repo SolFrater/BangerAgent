@@ -5,8 +5,14 @@ const router = express.Router();
 
 // Create client lazily so environment variables are loaded
 function getClient() {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (apiKey) {
+    console.log('[DEBUG] API Key loaded:', `${apiKey.substring(0, 20)}...${apiKey.substring(apiKey.length - 10)}`);
+  } else {
+    console.log('[DEBUG] WARNING: No API key found in environment!');
+  }
   return new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY,
+    apiKey: apiKey,
   });
 }
 
@@ -82,7 +88,7 @@ router.post('/optimize', async (req, res, next) => {
     }
 
     const response = await getClient().messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-sonnet',
       max_tokens: 2000,
       system: OPTIMIZE_SYSTEM_INSTRUCTION,
       messages: [
@@ -112,7 +118,7 @@ router.post('/reply', async (req, res, next) => {
     }
 
     const response = await getClient().messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-sonnet',
       max_tokens: 1500,
       system: REPLY_SYSTEM_INSTRUCTION,
       messages: [
@@ -142,7 +148,7 @@ router.post('/audit', async (req, res, next) => {
     }
 
     const response = await getClient().messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-sonnet',
       max_tokens: 2000,
       system: AUDIT_SYSTEM_INSTRUCTION,
       messages: [
@@ -172,7 +178,7 @@ router.post('/niche', async (req, res, next) => {
     }
 
     const response = await getClient().messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-sonnet',
       max_tokens: 2500,
       system: NICHE_SYSTEM_INSTRUCTION,
       messages: [
@@ -202,7 +208,7 @@ router.post('/ideate', async (req, res, next) => {
     }
 
     const response = await getClient().messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-sonnet',
       max_tokens: 2500,
       system: IDEA_SYSTEM_INSTRUCTION,
       messages: [
