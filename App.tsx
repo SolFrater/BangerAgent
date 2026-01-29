@@ -9,7 +9,9 @@ import ProfileAuditResults from './components/ProfileAuditResults';
 import NicheAnalysisResults from './components/NicheAnalysisResults';
 import IdeaGenerationResults from './components/IdeaGenerationResults';
 import HistoryDrawer from './components/HistoryDrawer';
+import SettingsPanel from './components/SettingsPanel';
 import HowToUse from './components/HowToUse';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const STORAGE_KEY = 'nichelens_history_v1';
 const USER_KEY = 'nichelens_user_v1';
@@ -21,6 +23,7 @@ const App: React.FC = () => {
   const [outputPreference, setOutputPreference] = useState<'tweet' | 'bullets'>('tweet');
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [user, setUser] = useState<UserState>({ isLoggedIn: false });
   const [state, setState] = useState<OptimizationState>({
@@ -261,6 +264,10 @@ const App: React.FC = () => {
               </div>
             </button>
 
+            <button onClick={() => setIsSettingsOpen(true)} className="p-2.5 hover:bg-zinc-900 rounded-xl text-zinc-500 hover:text-white transition-all border border-transparent hover:border-white/10" title="Settings">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"/></svg>
+            </button>
+
             {user.isLoggedIn ? (
               <div className="flex items-center gap-3 pl-5 border-l border-white/10">
                 <div className="flex flex-col items-end hidden sm:flex">
@@ -305,6 +312,12 @@ const App: React.FC = () => {
             if (!supabase) localStorage.removeItem(STORAGE_KEY);
           }
         }} 
+      />
+
+      <SettingsPanel
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        isSupabaseConfigured={isSupabaseConfigured}
       />
 
       <main className="max-w-4xl mx-auto px-6 py-16 space-y-16">
