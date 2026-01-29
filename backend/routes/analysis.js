@@ -3,9 +3,12 @@ import Anthropic from '@anthropic-ai/sdk';
 
 const router = express.Router();
 
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+// Create client lazily so environment variables are loaded
+function getClient() {
+  return new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY,
+  });
+}
 
 const FOXY_FRAMEWORKS = `
 FoxyhitsW Content Philosophies (2024-2025):
@@ -78,7 +81,7 @@ router.post('/optimize', async (req, res, next) => {
       return res.status(400).json({ error: 'Missing required field: input' });
     }
 
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: 'claude-3-5-sonnet-20241022',
       max_tokens: 2000,
       system: OPTIMIZE_SYSTEM_INSTRUCTION,
@@ -108,7 +111,7 @@ router.post('/reply', async (req, res, next) => {
       return res.status(400).json({ error: 'Missing required field: input' });
     }
 
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: 'claude-3-5-sonnet-20241022',
       max_tokens: 1500,
       system: REPLY_SYSTEM_INSTRUCTION,
@@ -138,7 +141,7 @@ router.post('/audit', async (req, res, next) => {
       return res.status(400).json({ error: 'Missing required field: tweets (array)' });
     }
 
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: 'claude-3-5-sonnet-20241022',
       max_tokens: 2000,
       system: AUDIT_SYSTEM_INSTRUCTION,
@@ -168,7 +171,7 @@ router.post('/niche', async (req, res, next) => {
       return res.status(400).json({ error: 'Missing required field: tweets (array)' });
     }
 
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: 'claude-3-5-sonnet-20241022',
       max_tokens: 2500,
       system: NICHE_SYSTEM_INSTRUCTION,
@@ -198,7 +201,7 @@ router.post('/ideate', async (req, res, next) => {
       return res.status(400).json({ error: 'Missing required field: input' });
     }
 
-    const response = await client.messages.create({
+    const response = await getClient().messages.create({
       model: 'claude-3-5-sonnet-20241022',
       max_tokens: 2500,
       system: IDEA_SYSTEM_INSTRUCTION,
