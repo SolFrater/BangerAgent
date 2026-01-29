@@ -1,6 +1,6 @@
-# NicheLens Quick Start Guide
+# BangerAgent Quick Start Guide
 
-This guide walks you through setting up and running NicheLens locally, then deploying it.
+This guide walks you through setting up and running BangerAgent locally, then deploying it.
 
 ---
 

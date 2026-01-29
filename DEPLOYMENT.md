@@ -1,6 +1,6 @@
-# NicheLens Deployment Guide
+# BangerAgent Deployment Guide
 
-This guide covers deploying NicheLens to production using Docker, various cloud platforms, and GitHub Actions CI/CD.
+This guide covers deploying BangerAgent to production using Docker, various cloud platforms, and GitHub Actions CI/CD.
 
 ## Prerequisites
 
@@ -169,7 +169,7 @@ certbot certonly --standalone -d yourdomain.com
 
 ## CI/CD Pipeline
 
-NicheLens includes GitHub Actions workflows for automated testing and deployment.
+BangerAgent includes GitHub Actions workflows for automated testing and deployment.
 
 ### Build Workflow (`.github/workflows/build.yml`)
 

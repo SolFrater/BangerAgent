@@ -1,4 +1,4 @@
-# NicheLens Production Deployment Checklist
+# BangerAgent Production Deployment Checklist
 
 Complete checklist to verify everything is ready for production deployment.
 
@@ -38,7 +38,7 @@ Complete checklist to verify everything is ready for production deployment.
 ```bash
 cd backend
 npm run dev
-# Should output: 🚀 NicheLens Backend running on port 5000
+# Should output: 🚀 BangerAgent Backend running on port 5000
 ```
 - [ ] Backend starts without errors
 - [ ] Health check works: `curl http://localhost:5000/health`

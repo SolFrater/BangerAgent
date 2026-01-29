@@ -1,4 +1,4 @@
-# NicheLens: Production Deployment Quick Start
+# BangerAgent: Production Deployment Quick Start
 
 **TL;DR**: Complete production-ready AI engagement engine. Deploy in 30 minutes.
 

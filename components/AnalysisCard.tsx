@@ -20,7 +20,7 @@ const AnalysisCard: React.FC<AnalysisCardProps> = ({ analysis }) => {
           <div className="p-2 bg-white/5 rounded-lg text-[#1d9bf0]">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
-          NicheLens Intelligence
+          BangerAgent Intelligence
         </h3>
         <span className="text-[10px] bg-white text-black px-2.5 py-1 rounded-md font-black tracking-widest uppercase">Protocol v4.0.1</span>
       </div>

@@ -6,7 +6,7 @@ Complete guide to configure X OAuth authentication in production with Supabase.
 
 ## ✅ Status: OAuth Already Implemented
 
-**Great news!** OAuth authentication is already built into NicheLens:
+**Great news!** OAuth authentication is already built into BangerAgent:
 - ✅ Login button in navbar (`App.tsx:283`)
 - ✅ Supabase OAuth flow integrated (`App.tsx:107-110`)
 - ✅ User session persistence on page load
@@ -39,14 +39,14 @@ With X OAuth properly configured, users can:
 2. Sign in with your X/Twitter account (or create one)
 3. Click **"Create an app"** or go to Dashboard → Projects & Apps
 4. Click **"+ Create App"**
-5. Choose an app name (e.g., "NicheLens")
+5. Choose an app name (e.g., "BangerAgent")
 6. Select app use case: "Other" → "Checking bot activity"
 7. Click **"Next"**
 
 ### 1b. Fill App Details
 
 ```
-App name:                    NicheLens
+App name:                    BangerAgent
 App description:             AI-powered Twitter engagement analysis
 Website URL:                 https://nichelens.vercel.app
 Use case:                    Analyzing Twitter engagement
@@ -645,7 +645,7 @@ CREATE POLICY "Users can read their own X tokens" ON public.user_x_tokens
 
 ---
 
-## Current Implementation in NicheLens
+## Current Implementation in BangerAgent
 
 The OAuth flow is **already implemented** in `App.tsx`:
 

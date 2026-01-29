@@ -248,12 +248,12 @@ const App: React.FC = () => {
       <nav className="sticky top-0 z-50 bg-[#050505]/90 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setMode('guide')}>
-            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:scale-105 transition-transform">
-              <svg viewBox="0 0 24 24" className="w-5 h-5 text-black fill-current">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            <div className="w-9 h-9 bg-gradient-to-br from-[#FF6B35] to-[#FDB833] rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(255,107,53,0.3)] group-hover:scale-110 transition-transform">
+              <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
               </svg>
             </div>
-            <span className="font-black text-xl tracking-tight hidden sm:block bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-transparent">NicheLens</span>
+            <span className="font-black text-xl tracking-tight hidden sm:block bg-gradient-to-r from-[#FF6B35] to-[#FDB833] bg-clip-text text-transparent">BangerAgent</span>
           </div>
 
           <div className="flex items-center gap-4">
@@ -280,9 +280,9 @@ const App: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <button onClick={handleLogin} disabled={isAuthenticating} className="flex items-center gap-2.5 px-6 py-2.5 bg-white text-black rounded-full text-[12px] font-black hover:bg-[#e4e4e7] transition-all disabled:opacity-70">
+              <button onClick={handleLogin} disabled={isAuthenticating} className="flex items-center gap-2.5 px-6 py-2.5 bg-gradient-to-r from-[#FF6B35] to-[#FDB833] text-white rounded-full text-[12px] font-black hover:shadow-[0_0_20px_rgba(255,107,53,0.4)] transition-all disabled:opacity-70">
                 {isAuthenticating ? (
-                  <div className="w-4 h-4 border-2 border-black/20 border-t-black rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
                 ) : isSupabaseConfigured ? 'Authorize X' : 'Sandbox Mode'}
               </button>
             )}
@@ -321,13 +321,13 @@ const App: React.FC = () => {
       />
 
       <main className="max-w-4xl mx-auto px-6 py-16 space-y-16">
-        <div className="flex flex-wrap justify-center gap-1.5 p-1.5 bg-[#0a0a0a] rounded-2xl border border-white/5 w-fit mx-auto shadow-2xl">
-          <button onClick={() => setMode('guide')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'guide' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}>The Manual</button>
-          <button onClick={() => setMode('niche')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'niche' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}>01 Map</button>
-          <button onClick={() => setMode('ideate')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'ideate' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}>02 Architect</button>
-          <button onClick={() => setMode('post')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'post' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}>03 Forge</button>
-          <button onClick={() => setMode('audit')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'audit' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}>04 Audit</button>
-          <button onClick={() => setMode('reply')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'reply' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}>Reply</button>
+        <div className="flex flex-wrap justify-center gap-1.5 p-1.5 bg-[#0a0a0a] rounded-2xl border border-[#FF6B35]/10 w-fit mx-auto shadow-2xl">
+          <button onClick={() => setMode('guide')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'guide' ? 'bg-gradient-to-r from-[#FF6B35] to-[#FDB833] text-white shadow-lg' : 'text-zinc-500 hover:text-[#FF6B35]'}`}>The Manual</button>
+          <button onClick={() => setMode('niche')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'niche' ? 'bg-gradient-to-r from-[#FF6B35] to-[#FDB833] text-white shadow-lg' : 'text-zinc-500 hover:text-[#FF6B35]'}`}>01 Map</button>
+          <button onClick={() => setMode('ideate')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'ideate' ? 'bg-gradient-to-r from-[#FF6B35] to-[#FDB833] text-white shadow-lg' : 'text-zinc-500 hover:text-[#FF6B35]'}`}>02 Architect</button>
+          <button onClick={() => setMode('post')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'post' ? 'bg-gradient-to-r from-[#FF6B35] to-[#FDB833] text-white shadow-lg' : 'text-zinc-500 hover:text-[#FF6B35]'}`}>03 Forge</button>
+          <button onClick={() => setMode('audit')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'audit' ? 'bg-gradient-to-r from-[#FF6B35] to-[#FDB833] text-white shadow-lg' : 'text-zinc-500 hover:text-[#FF6B35]'}`}>04 Audit</button>
+          <button onClick={() => setMode('reply')} className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all ${mode === 'reply' ? 'bg-gradient-to-r from-[#FF6B35] to-[#FDB833] text-white shadow-lg' : 'text-zinc-500 hover:text-[#FF6B35]'}`}>Reply</button>
         </div>
 
         {(mode !== 'guide') && (
@@ -353,7 +353,7 @@ const App: React.FC = () => {
               <button
                 onClick={handleAction}
                 disabled={state.loading || (!input.trim() && mode !== 'audit' && mode !== 'niche')}
-                className={`flex items-center gap-2 px-7 py-3 rounded-full font-black text-[13px] uppercase tracking-wide transition-all shadow-xl ${state.loading ? 'bg-zinc-900 text-zinc-700' : 'bg-white text-black hover:bg-zinc-200 active:scale-95'}`}
+                className={`flex items-center gap-2 px-7 py-3 rounded-full font-black text-[13px] uppercase tracking-wide transition-all shadow-xl ${state.loading ? 'bg-gradient-to-r from-[#4a5568] to-[#2d3748] text-gray-600' : 'bg-gradient-to-r from-[#FF6B35] to-[#FDB833] text-white hover:shadow-[0_0_25px_rgba(255,107,53,0.5)] active:scale-95'}`}
               >
                 {state.loading ? 'Syncing...' : 'Launch Protocol'}
               </button>
@@ -366,8 +366,8 @@ const App: React.FC = () => {
         <div className="min-h-[200px]">
           {state.loading && (
             <div className="flex flex-col items-center justify-center py-24 space-y-8 animate-pulse">
-              <div className="relative w-16 h-16 border-4 border-white/10 rounded-full border-t-white animate-spin"></div>
-              <p className="text-zinc-600 font-black text-[10px] uppercase tracking-[0.4em]">Syncing with {isSupabaseConfigured ? 'Cloud' : 'Fluid'} Hierarchy</p>
+              <div className="relative w-16 h-16 border-4 border-[#FF6B35]/20 rounded-full border-t-[#FF6B35] animate-spin"></div>
+              <p className="text-[#FF6B35]/60 font-black text-[10px] uppercase tracking-[0.4em]">Syncing with {isSupabaseConfigured ? 'Cloud' : 'Fluid'} Hierarchy</p>
             </div>
           )}
           {state.error && (
@@ -383,11 +383,11 @@ const App: React.FC = () => {
         </div>
       </main>
 
-      <footer className="border-t border-white/5 py-16 mt-20 opacity-30 text-center space-y-5">
-        <p className="text-[10px] font-black uppercase tracking-[0.6em] text-zinc-500">NicheLens Protocol v4.2.0-{isSupabaseConfigured ? 'CLOUD' : 'LOCAL'}</p>
+      <footer className="border-t border-[#FF6B35]/10 py-16 mt-20 opacity-40 text-center space-y-5">
+        <p className="text-[10px] font-black uppercase tracking-[0.6em] text-[#FF6B35]">BangerAgent Protocol v4.2.0-{isSupabaseConfigured ? 'CLOUD' : 'LOCAL'}</p>
         <div className="flex justify-center items-center gap-2">
-           <div className={`w-1.5 h-1.5 rounded-full ${isSupabaseConfigured ? 'bg-emerald-500' : 'bg-blue-500'}`} />
-           <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">{isSupabaseConfigured ? 'Cloud Sync Online' : 'Local Sandbox Mode'}</span>
+           <div className={`w-1.5 h-1.5 rounded-full ${isSupabaseConfigured ? 'bg-emerald-500' : 'bg-[#FF6B35]'}`} />
+           <span className="text-[9px] font-bold text-[#FF6B35]/60 uppercase tracking-widest">{isSupabaseConfigured ? 'Cloud Sync Online' : 'Local Sandbox Mode'}</span>
         </div>
       </footer>
     </div>

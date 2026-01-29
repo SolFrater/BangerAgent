@@ -19,7 +19,7 @@ Get X OAuth running in 5 minutes. All the setup is done—just configure credent
 
 1. Go to https://developer.twitter.com/
 2. Click **"+ Create App"** (under Projects & Apps)
-3. Name it: `NicheLens`
+3. Name it: `BangerAgent`
 4. Accept terms
 5. Go to **"Keys and Tokens"** tab
 6. Copy:

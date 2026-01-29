@@ -8,7 +8,7 @@ import {
 } from '../types';
 
 /**
- * NicheLens API Client
+ * BangerAgent API Client
  * Handles communication with backend API for production deployments.
  * Automatically detects backend URL from environment or defaults to localhost.
  */

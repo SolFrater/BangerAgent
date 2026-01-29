@@ -1,6 +1,6 @@
 # Production Deployment Guide
 
-This guide will deploy NicheLens to production in under 15 minutes.
+This guide will deploy BangerAgent to production in under 15 minutes.
 
 ## Architecture
 

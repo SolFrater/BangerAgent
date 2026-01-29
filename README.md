@@ -2,9 +2,9 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# NicheLens V3 - Premium X Engagement AI Engine
+# 🚀 BangerAgent - AI-Powered X Account Growth Engine
 
-An AI-powered platform for content creators and crypto enthusiasts to optimize their X (Twitter) presence using Claude AI.
+The ultimate AI platform for creators to optimize content strategy, maximize audience growth, and dominate their niche on X with data-driven insights powered by Claude AI.
 
 ## Features
 

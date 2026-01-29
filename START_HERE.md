@@ -1,4 +1,4 @@
-# 🚀 START HERE - NicheLens Complete Guide
+# 🚀 START HERE - BangerAgent Complete Guide
 
 Welcome! Your production-ready AI engagement engine is ready to deploy. Choose your path below.
 

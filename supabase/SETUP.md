@@ -1,6 +1,6 @@
-# Supabase Setup Guide for NicheLens
+# Supabase Setup Guide for BangerAgent
 
-This guide walks you through setting up Supabase for the NicheLens application.
+This guide walks you through setting up Supabase for the BangerAgent application.
 
 ## Prerequisites
 

@@ -1,6 +1,6 @@
 # Supabase Production Setup Guide
 
-Complete guide to configure Supabase database for NicheLens production deployment.
+Complete guide to configure Supabase database for BangerAgent production deployment.
 
 ---
 
