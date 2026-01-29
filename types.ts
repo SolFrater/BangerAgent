@@ -1,5 +1,6 @@
 
-export type AppMode = 'post' | 'reply' | 'audit' | 'niche' | 'ideate' | 'guide';
+export type APIMode = 'post' | 'reply' | 'audit' | 'niche' | 'ideate';
+export type AppMode = APIMode | 'guide';
 
 export interface ReplyTarget {
   handle: string;

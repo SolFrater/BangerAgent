@@ -18,8 +18,7 @@ const USER_KEY = 'nichelens_user_v1';
 
 const App: React.FC = () => {
   const [input, setInput] = useState('');
-  // Fix: The local AppMode needs to handle the 'guide' UI state correctly.
-  const [mode, setMode] = useState<AppMode | 'guide'>('guide');
+  const [mode, setMode] = useState<AppMode>('guide');
   const [outputPreference, setOutputPreference] = useState<'tweet' | 'bullets'>('tweet');
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
@@ -192,8 +191,8 @@ const App: React.FC = () => {
     }));
 
     try {
-      // Fix: Cast mode to AppMode for the API client call
-      const result = await analyzeContent(mode as AppMode, input, user.handle);
+      // Cast mode to APIMode (safe since we've already checked mode !== 'guide' above)
+      const result = await analyzeContent(mode as any, input, user.handle);
       
       setState(prev => {
         const nextState = { ...prev, loading: false };
@@ -345,7 +344,7 @@ const App: React.FC = () => {
               disabled={state.loading}
             />
             <div className="absolute bottom-5 right-5 flex items-center gap-4">
-              {!user.isLoggedIn && mode !== 'guide' && (
+              {!user.isLoggedIn && (
                 <span className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest hidden sm:block">
                   {isSupabaseConfigured ? 'Login to Sync History' : 'LocalStorage Sandbox Mode'}
                 </span>

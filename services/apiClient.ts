@@ -1,5 +1,6 @@
 
 import {
+  APIMode,
   OptimizationResult,
   ReplyResult,
   ProfileAuditResult,
@@ -52,7 +53,7 @@ async function callBackendAPI(
 }
 
 export async function analyzeContent(
-  mode: 'post' | 'reply' | 'audit' | 'niche' | 'ideate',
+  mode: APIMode,
   input: string,
   handle: string = 'user'
 ): Promise<any> {
