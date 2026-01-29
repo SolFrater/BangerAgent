@@ -1,28 +1,58 @@
 
 import {
-  optimizeTweet,
-  craftReply,
-  auditProfile,
-  analyzeNiche,
-  generateContentIdeas,
-  generateTweetImage
-} from './claudeService';
-import { 
-  OptimizationResult, 
-  ReplyResult, 
-  ProfileAuditResult, 
-  NicheAnalysisResult, 
-  IdeaGenerationResult 
+  OptimizationResult,
+  ReplyResult,
+  ProfileAuditResult,
+  NicheAnalysisResult,
+  IdeaGenerationResult
 } from '../types';
 
 /**
  * NicheLens API Client
- * This service acts as the orchestration layer between the React UI 
- * and the generative AI backend protocols.
+ * Handles communication with backend API for production deployments.
+ * Automatically detects backend URL from environment or defaults to localhost.
  */
 
+// Get the backend URL from environment or use defaults
+function getBackendUrl(): string {
+  // Priority: VITE_BACKEND_URL → VITE_API_URL → localhost
+  const url = import.meta.env.VITE_BACKEND_URL ||
+              import.meta.env.VITE_API_URL ||
+              'http://localhost:5000';
+  return url.replace(/\/$/, ''); // Remove trailing slash
+}
+
+// Helper to make backend API calls
+async function callBackendAPI(
+  endpoint: string,
+  payload: any
+): Promise<any> {
+  const backendUrl = getBackendUrl();
+  const url = `${backendUrl}/api/analysis${endpoint}`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Backend error (${response.status}): ${error}`);
+  }
+
+  const data = await response.json();
+  if (!data.success) {
+    throw new Error(data.error || 'Backend request failed');
+  }
+
+  return data.data;
+}
+
 export async function analyzeContent(
-  mode: 'post' | 'reply' | 'audit' | 'niche' | 'ideate', 
+  mode: 'post' | 'reply' | 'audit' | 'niche' | 'ideate',
   input: string,
   handle: string = 'user'
 ): Promise<any> {
@@ -35,15 +65,21 @@ export async function analyzeContent(
   try {
     switch (mode) {
       case 'post':
-        return await optimizeTweet(input);
+        return await callBackendAPI('/optimize', { input });
       case 'reply':
-        return await craftReply(input);
+        return await callBackendAPI('/reply', { input });
       case 'audit':
-        return await auditProfile(tweetArray.length > 0 ? tweetArray : [input], handle);
+        return await callBackendAPI('/audit', {
+          tweets: tweetArray.length > 0 ? tweetArray : [input],
+          handle
+        });
       case 'niche':
-        return await analyzeNiche(tweetArray.length > 0 ? tweetArray : [input], handle);
+        return await callBackendAPI('/niche', {
+          tweets: tweetArray.length > 0 ? tweetArray : [input],
+          handle
+        });
       case 'ideate':
-        return await generateContentIdeas(input);
+        return await callBackendAPI('/ideate', { input });
       default:
         throw new Error(`Unsupported protocol mode: ${mode}`);
     }
@@ -55,7 +91,7 @@ export async function analyzeContent(
 
 export async function generateAsset(prompt: string): Promise<string> {
   try {
-    return await generateTweetImage(prompt);
+    throw new Error('Image generation is not available. Use a dedicated image service.');
   } catch (error) {
     console.error('[API Client Error] Image generation failure:', error);
     throw new Error('Failed to forge visual asset.');
@@ -63,6 +99,15 @@ export async function generateAsset(prompt: string): Promise<string> {
 }
 
 export async function checkStatus(): Promise<boolean> {
-  // Simplified health check for the GenAI connection
-  return !!process.env.API_KEY;
+  try {
+    const backendUrl = getBackendUrl();
+    const response = await fetch(`${backendUrl}/health`, {
+      method: 'GET',
+      signal: AbortSignal.timeout(5000) // 5 second timeout
+    });
+    return response.ok;
+  } catch (error) {
+    console.warn('[API Client] Backend health check failed:', error);
+    return false;
+  }
 }
