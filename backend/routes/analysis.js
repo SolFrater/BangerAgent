@@ -6,10 +6,8 @@ const router = express.Router();
 // Create client lazily so environment variables are loaded
 function getClient() {
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (apiKey) {
-    console.log('[DEBUG] API Key loaded:', `${apiKey.substring(0, 20)}...${apiKey.substring(apiKey.length - 10)}`);
-  } else {
-    console.log('[DEBUG] WARNING: No API key found in environment!');
+  if (!apiKey) {
+    throw new Error('ANTHROPIC_API_KEY environment variable is not set');
   }
   return new Anthropic({
     apiKey: apiKey,

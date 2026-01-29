@@ -11,16 +11,16 @@ import analysisRoutes from './routes/analysis.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Initialize Supabase client (optional - can work without it in dev)
+// Initialize Supabase client (optional)
 let supabase = null;
 if (process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_KEY) {
   supabase = createClient(
     process.env.SUPABASE_URL,
     process.env.SUPABASE_SERVICE_KEY
   );
-  console.log('✓ Supabase connected');
-} else {
-  console.log('⚠️  Supabase not configured - analytics disabled');
+  console.log('[INFO] Supabase connected');
+} else if (process.env.NODE_ENV === 'production') {
+  console.warn('[WARN] Supabase not configured in production');
 }
 
 // Middleware
