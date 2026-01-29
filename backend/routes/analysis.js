@@ -88,7 +88,7 @@ router.post('/optimize', async (req, res, next) => {
     }
 
     const response = await getClient().messages.create({
-      model: 'claude-3-sonnet',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 2000,
       system: OPTIMIZE_SYSTEM_INSTRUCTION,
       messages: [
@@ -118,7 +118,7 @@ router.post('/reply', async (req, res, next) => {
     }
 
     const response = await getClient().messages.create({
-      model: 'claude-3-sonnet',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 1500,
       system: REPLY_SYSTEM_INSTRUCTION,
       messages: [
@@ -148,7 +148,7 @@ router.post('/audit', async (req, res, next) => {
     }
 
     const response = await getClient().messages.create({
-      model: 'claude-3-sonnet',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 2000,
       system: AUDIT_SYSTEM_INSTRUCTION,
       messages: [
@@ -178,7 +178,7 @@ router.post('/niche', async (req, res, next) => {
     }
 
     const response = await getClient().messages.create({
-      model: 'claude-3-sonnet',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 2500,
       system: NICHE_SYSTEM_INSTRUCTION,
       messages: [
@@ -208,7 +208,7 @@ router.post('/ideate', async (req, res, next) => {
     }
 
     const response = await getClient().messages.create({
-      model: 'claude-3-sonnet',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 2500,
       system: IDEA_SYSTEM_INSTRUCTION,
       messages: [
