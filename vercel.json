@@ -9,7 +9,8 @@
   },
   "git": {
     "deploymentEnabled": {
-      "main": true
+      "main": true,
+      "claude/complete-supabase-claude-app-1mfi9": true
     }
   }
 }
