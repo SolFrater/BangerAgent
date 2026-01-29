@@ -1,12 +1,12 @@
 
-import { 
-  optimizeTweet, 
-  craftReply, 
-  auditProfile, 
-  analyzeNiche, 
+import {
+  optimizeTweet,
+  craftReply,
+  auditProfile,
+  analyzeNiche,
   generateContentIdeas,
-  generateTweetImage 
-} from './geminiService';
+  generateTweetImage
+} from './claudeService';
 import { 
   OptimizationResult, 
   ReplyResult, 
