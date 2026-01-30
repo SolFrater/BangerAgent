@@ -87,15 +87,16 @@ const App: React.FC = () => {
   const fetchHistory = async (userId: string) => {
     if (!supabase) return;
     const { data, error } = await supabase
-      .from('history')
+      .from('analysis_history')
       .select('*')
       .eq('user_id', userId)
-      .order('timestamp', { ascending: false });
+      .order('created_at', { ascending: false });
 
     if (!error && data) {
       setHistory(data.map(item => ({
         ...item,
-        timestamp: new Date(item.timestamp).getTime()
+        type: item.analysis_type,
+        timestamp: new Date(item.created_at).getTime()
       })));
     }
   };
@@ -149,20 +150,22 @@ const App: React.FC = () => {
 
     if (isSupabaseConfigured && supabase && user.id) {
       const { data, error } = await supabase
-        .from('history')
+        .from('analysis_history')
         .insert([{
           user_id: user.id,
-          type,
+          analysis_type: type,
           input: originalInput,
-          result,
-          timestamp: new Date().toISOString()
+          result
         }])
         .select();
 
       if (!error && data) {
         setHistory(prev => [{
-          ...data[0],
-          timestamp: new Date(data[0].timestamp).getTime()
+          id: data[0].id,
+          type: data[0].analysis_type,
+          input: data[0].input,
+          result: data[0].result,
+          timestamp: new Date(data[0].created_at).getTime()
         }, ...prev]);
       }
     } else {
@@ -296,16 +299,16 @@ const App: React.FC = () => {
         onSelect={selectHistoryItem} 
         onDelete={async (id) => {
           if (supabase) {
-            await supabase.from('history').delete().eq('id', id);
+            await supabase.from('analysis_history').delete().eq('id', id);
           }
           const updatedHistory = history.filter(i => i.id !== id);
           setHistory(updatedHistory);
           if (!supabase) localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedHistory));
-        }} 
+        }}
         onClear={async () => {
           if (confirm('Clear archive?')) {
             if (supabase && user.id) {
-              await supabase.from('history').delete().eq('user_id', user.id);
+              await supabase.from('analysis_history').delete().eq('user_id', user.id);
             }
             setHistory([]);
             if (!supabase) localStorage.removeItem(STORAGE_KEY);
