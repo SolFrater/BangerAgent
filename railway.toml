@@ -1,0 +1,9 @@
+[build]
+builder = "nixpacks"
+buildCommand = "cd backend && npm install"
+rootDirectory = "backend"
+
+[deploy]
+startCommand = "cd backend && node server.js"
+healthcheckPath = "/health"
+healthcheckTimeout = 100
