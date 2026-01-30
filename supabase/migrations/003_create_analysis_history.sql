@@ -17,9 +17,7 @@ CREATE TABLE IF NOT EXISTS public.analysis_history (
   execution_time_ms INT,
 
   -- For searching
-  search_tokens TEXT,
-
-  CONSTRAINT analysis_history_pkey PRIMARY KEY (id)
+  search_tokens TEXT
 );
 
 -- Create indexes for efficient queries
