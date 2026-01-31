@@ -129,20 +129,7 @@ const App: React.FC = () => {
         setState(s => ({ ...s, error: 'OAuth handshake failed. Check Supabase config.' }));
       }
     } else {
-      // Mock login for Sandbox Mode
-      setTimeout(() => {
-        const mockUser: UserState = {
-          isLoggedIn: true,
-          id: 'sandbox-user',
-          handle: 'sandbox_alpha',
-          name: 'Sandbox Creator',
-          profileImage: 'https://api.dicebear.com/7.x/shapes/svg?seed=sandbox'
-        };
-        setUser(mockUser);
-        localStorage.setItem(USER_KEY, JSON.stringify(mockUser));
-        setIsAuthenticating(false);
-      }, 1000);
-      return;
+      setState(s => ({ ...s, error: 'Supabase is not configured. Please set SUPABASE_URL and SUPABASE_ANON_KEY.' }));
     }
     setIsAuthenticating(false);
   };
@@ -184,7 +171,7 @@ const App: React.FC = () => {
         }, ...prev]);
       }
     } else {
-      // Local Sandbox Storage
+      // Local Storage fallback
       const updatedHistory = [newItem, ...history].slice(0, 30);
       setHistory(updatedHistory);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedHistory));
@@ -308,7 +295,7 @@ const App: React.FC = () => {
               <button onClick={handleLogin} disabled={isAuthenticating} className="flex items-center gap-2.5 px-6 py-2.5 bg-white text-black rounded-full text-[12px] font-black hover:bg-[#e4e4e7] transition-all disabled:opacity-70">
                 {isAuthenticating ? (
                   <div className="w-4 h-4 border-2 border-black/20 border-t-black rounded-full animate-spin" />
-                ) : isSupabaseConfigured ? 'Authorize X' : 'Sandbox Mode'}
+                ) : 'Authorize X'}
               </button>
             )}
           </div>
@@ -372,7 +359,7 @@ const App: React.FC = () => {
             <div className="absolute bottom-5 right-5 flex items-center gap-4">
               {!user.isLoggedIn && mode !== 'guide' && (
                 <span className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest hidden sm:block">
-                  {isSupabaseConfigured ? 'Login to Sync History' : 'LocalStorage Sandbox Mode'}
+                  {isSupabaseConfigured ? 'Login to Sync History' : 'Login Required'}
                 </span>
               )}
               <button
@@ -412,7 +399,7 @@ const App: React.FC = () => {
         <p className="text-[10px] font-black uppercase tracking-[0.6em] text-zinc-500">BangerAgent v4.2.0-{isSupabaseConfigured ? 'CLOUD' : 'LOCAL'}</p>
         <div className="flex justify-center items-center gap-2">
            <div className={`w-1.5 h-1.5 rounded-full ${isSupabaseConfigured ? 'bg-emerald-500' : 'bg-blue-500'}`} />
-           <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">{isSupabaseConfigured ? 'Cloud Sync Online' : 'Local Sandbox Mode'}</span>
+           <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">{isSupabaseConfigured ? 'Cloud Sync Online' : 'Local Mode'}</span>
         </div>
       </footer>
     </div>

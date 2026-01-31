@@ -82,7 +82,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({ isOpen, onClose, isSupaba
               </div>
               <div className="flex justify-between">
                 <span>Mode</span>
-                <span className="text-zinc-400">{isSupabaseConfigured ? 'Cloud Sync' : 'Local Sandbox'}</span>
+                <span className="text-zinc-400">{isSupabaseConfigured ? 'Cloud Sync' : 'Local'}</span>
               </div>
               <div className="flex justify-between">
                 <span>Storage</span>
