@@ -140,7 +140,7 @@ cd backend && npm run dev
 ## Common Issues
 
 **"supabaseUrl is required"**
-- Either configure Supabase vars in .env.local or leave them blank to use sandbox mode
+- Either configure Supabase vars in .env.local or leave them blank for local-only mode
 
 **"ANTHROPIC_API_KEY is missing"**
 - Make sure to add your Claude API key to .env.local

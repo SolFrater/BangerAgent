@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
  * Supabase Cloud Client
  *
  * Safely extracts environment variables. If they are missing, the client
- * returns null, allowing the App to fall back to LocalStorage Sandbox mode.
+ * returns null, allowing the App to fall back to LocalStorage mode.
  */
 
 const supabaseUrl = (process.env as any).SUPABASE_URL;
