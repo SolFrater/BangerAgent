@@ -53,6 +53,11 @@ const App: React.FC = () => {
           loadLocalSession();
         }
         setAuthReady(true);
+      }).catch(() => {
+        // Network error or Supabase unreachable — fall back to local mode
+        // so the UI doesn't freeze on the loading spinner.
+        loadLocalSession();
+        setAuthReady(true);
       });
 
       const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
