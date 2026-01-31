@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.frontend
-    container_name: nichelens-frontend
+    container_name: bangeragent-frontend
     ports:
       - "3000:3000"
     environment:
@@ -15,14 +15,14 @@ services:
     depends_on:
       - backend
     networks:
-      - nichelens
+      - bangeragent
     restart: unless-stopped
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: nichelens-backend
+    container_name: bangeragent-backend
     ports:
       - "5000:5000"
     environment:
@@ -32,7 +32,7 @@ services:
       - NODE_ENV=production
       - PORT=5000
     networks:
-      - nichelens
+      - bangeragent
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:5000/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
@@ -42,5 +42,5 @@ services:
       start_period: 5s
 
 networks:
-  nichelens:
+  bangeragent:
     driver: bridge

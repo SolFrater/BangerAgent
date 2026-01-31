@@ -33,8 +33,8 @@ jobs:
           file: ./Dockerfile.frontend
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/nichelens:frontend-latest
-            ${{ secrets.DOCKER_USERNAME }}/nichelens:frontend-${{ steps.version.outputs.VERSION }}
+            ${{ secrets.DOCKER_USERNAME }}/bangeragent:frontend-latest
+            ${{ secrets.DOCKER_USERNAME }}/bangeragent:frontend-${{ steps.version.outputs.VERSION }}
 
       - name: Build and push backend
         uses: docker/build-push-action@v5
@@ -43,8 +43,8 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/nichelens:backend-latest
-            ${{ secrets.DOCKER_USERNAME }}/nichelens:backend-${{ steps.version.outputs.VERSION }}
+            ${{ secrets.DOCKER_USERNAME }}/bangeragent:backend-latest
+            ${{ secrets.DOCKER_USERNAME }}/bangeragent:backend-${{ steps.version.outputs.VERSION }}
 
   deploy-vercel:
     runs-on: ubuntu-latest
@@ -76,7 +76,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           body: |
             Docker images available:
-            - `nichelens:frontend-${{ github.ref }}`
-            - `nichelens:backend-${{ github.ref }}`
+            - `bangeragent:frontend-${{ github.ref }}`
+            - `bangeragent:backend-${{ github.ref }}`
           draft: false
           prerelease: false

@@ -82,7 +82,7 @@ jobs:
           context: .
           file: ./Dockerfile.frontend
           push: false
-          tags: nichelens:frontend-latest
+          tags: bangeragent:frontend-latest
 
       - name: Build backend Docker image
         uses: docker/build-push-action@v5
@@ -90,7 +90,7 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: false
-          tags: nichelens:backend-latest
+          tags: bangeragent:backend-latest
 
       - name: Test docker-compose configuration
         run: docker-compose config
