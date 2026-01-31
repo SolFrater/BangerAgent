@@ -13,8 +13,8 @@ import SettingsPanel from './components/SettingsPanel';
 import HowToUse from './components/HowToUse';
 import ErrorBoundary from './components/ErrorBoundary';
 
-const STORAGE_KEY = 'nichelens_history_v1';
-const USER_KEY = 'nichelens_user_v1';
+const STORAGE_KEY = 'bangeragent_history_v1';
+const USER_KEY = 'bangeragent_user_v1';
 
 const App: React.FC = () => {
   const [input, setInput] = useState('');
@@ -95,7 +95,7 @@ const App: React.FC = () => {
       isLoggedIn: true,
       id: supabaseUser.id,
       handle: supabaseUser.user_metadata?.user_name || supabaseUser.email?.split('@')[0],
-      name: supabaseUser.user_metadata?.full_name || 'Niche Creator',
+      name: supabaseUser.user_metadata?.full_name || 'Creator',
       profileImage: supabaseUser.user_metadata?.avatar_url || `https://api.dicebear.com/7.x/shapes/svg?seed=${supabaseUser.id}`
     };
     setUser(userState);
@@ -273,12 +273,12 @@ const App: React.FC = () => {
       <nav className="sticky top-0 z-50 bg-[#050505]/90 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setMode('guide')}>
-            <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:scale-105 transition-transform">
-              <svg viewBox="0 0 24 24" className="w-5 h-5 text-black fill-current">
+            <div className="w-9 h-9 bg-gradient-to-br from-[#ff6b00] to-[#ff2d55] rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(255,107,0,0.3)] group-hover:scale-105 transition-transform">
+              <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
               </svg>
             </div>
-            <span className="font-black text-xl tracking-tight hidden sm:block bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-transparent">NicheLens</span>
+            <span className="font-black text-xl tracking-tight hidden sm:block bg-gradient-to-r from-[#ff6b00] to-[#ff2d55] bg-clip-text text-transparent">BangerAgent</span>
           </div>
 
           <div className="flex items-center gap-4">
@@ -297,7 +297,7 @@ const App: React.FC = () => {
               <div className="flex items-center gap-3 pl-5 border-l border-white/10">
                 <div className="flex flex-col items-end hidden sm:flex">
                   <span className="text-[11px] font-black text-white">{user.name}</span>
-                  <span className="text-[9px] text-[#1d9bf0] font-bold uppercase tracking-widest">@{user.handle}</span>
+                  <span className="text-[9px] text-[#ff6b00] font-bold uppercase tracking-widest">@{user.handle}</span>
                 </div>
                 <img src={user.profileImage} alt="Profile" className="w-9 h-9 rounded-full border border-white/20 grayscale hover:grayscale-0 transition-all cursor-pointer" />
                 <button onClick={handleLogout} className="p-2 text-zinc-600 hover:text-red-500 transition-colors bg-white/5 rounded-lg border border-white/5 hover:border-red-500/20">
@@ -378,7 +378,7 @@ const App: React.FC = () => {
               <button
                 onClick={handleAction}
                 disabled={state.loading || (!input.trim() && mode !== 'audit' && mode !== 'niche')}
-                className={`flex items-center gap-2 px-7 py-3 rounded-full font-black text-[13px] uppercase tracking-wide transition-all shadow-xl ${state.loading ? 'bg-zinc-900 text-zinc-700' : 'bg-white text-black hover:bg-zinc-200 active:scale-95'}`}
+                className={`flex items-center gap-2 px-7 py-3 rounded-full font-black text-[13px] uppercase tracking-wide transition-all shadow-xl ${state.loading ? 'bg-zinc-900 text-zinc-700' : 'bg-gradient-to-r from-[#ff6b00] to-[#ff2d55] text-white hover:opacity-90 active:scale-95'}`}
               >
                 {state.loading ? 'Syncing...' : 'Launch Protocol'}
               </button>
@@ -409,7 +409,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="border-t border-white/5 py-16 mt-20 opacity-30 text-center space-y-5">
-        <p className="text-[10px] font-black uppercase tracking-[0.6em] text-zinc-500">NicheLens Protocol v4.2.0-{isSupabaseConfigured ? 'CLOUD' : 'LOCAL'}</p>
+        <p className="text-[10px] font-black uppercase tracking-[0.6em] text-zinc-500">BangerAgent v4.2.0-{isSupabaseConfigured ? 'CLOUD' : 'LOCAL'}</p>
         <div className="flex justify-center items-center gap-2">
            <div className={`w-1.5 h-1.5 rounded-full ${isSupabaseConfigured ? 'bg-emerald-500' : 'bg-blue-500'}`} />
            <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">{isSupabaseConfigured ? 'Cloud Sync Online' : 'Local Sandbox Mode'}</span>

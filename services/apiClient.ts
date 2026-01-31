@@ -16,7 +16,7 @@ import {
 } from '../types';
 
 /**
- * NicheLens API Client
+ * BangerAgent API Client
  * This service acts as the orchestration layer between the React UI 
  * and the generative AI backend protocols.
  */
@@ -63,6 +63,5 @@ export async function generateAsset(prompt: string): Promise<string> {
 }
 
 export async function checkStatus(): Promise<boolean> {
-  // Simplified health check for the GenAI connection
-  return !!process.env.API_KEY;
+  return !!process.env.ANTHROPIC_API_KEY;
 }

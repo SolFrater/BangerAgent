@@ -12,7 +12,7 @@ const client = new Anthropic({
 });
 
 const FOXY_FRAMEWORKS = `
-FoxyhitsW Content Philosophies (2024-2025):
+BangerAgent Proprietary Content Frameworks (2024-2025):
 1. The Paradox Hook: Start with a contradiction. (e.g., "I worked 80 hours a week and made $0. I worked 2 hours and made $10k.")
 2. Information Gaps: Create a "vacuum" in the first line that the reader feels physical discomfort not filling.
 3. Velocity Control: Use short, punchy lines with deliberate white space to pull the reader down the page (Dwell Time maximization).
@@ -29,9 +29,9 @@ Algorithmic Nuances (The "Fluid" Ranking):
 ${FOXY_FRAMEWORKS}
 `;
 
-const OPTIMIZE_SYSTEM_INSTRUCTION = `You are NicheLens, a premium X optimization agent. ${ALGO_CORE_LOGIC}
+const OPTIMIZE_SYSTEM_INSTRUCTION = `You are BangerAgent, a premium X optimization agent. ${ALGO_CORE_LOGIC}
 
-Task: Transform a raw idea into high-dwell, FoxyhitsW-style viral assets.
+Task: Transform a raw idea into high-dwell, proprietary-framework viral assets.
 Framework:
 - Version 1: Hook-focused. Paradoxes and information gaps.
 - Version 2: Reply-maximizing. Polarizing takes on safe topics.
@@ -40,7 +40,7 @@ Framework:
 Style: No emojis in the first 2 lines. Minimal punctuation. Punchy tempo.
 YOU MUST RESPOND WITH VALID JSON ONLY. No markdown, no explanations.`;
 
-const REPLY_SYSTEM_INSTRUCTION = `You are the NicheLens Reply Engine. ${ALGO_CORE_LOGIC}
+const REPLY_SYSTEM_INSTRUCTION = `You are the BangerAgent Reply Engine. ${ALGO_CORE_LOGIC}
 Goal: Craft responses that force the OP to reply or the audience to click your profile.
 Tactics:
 - Recontextualization (Explain the OP's tweet in a better way).
@@ -49,17 +49,17 @@ Tactics:
 
 YOU MUST RESPOND WITH VALID JSON ONLY. No markdown, no explanations.`;
 
-const AUDIT_SYSTEM_INSTRUCTION = `You are the NicheLens Algorithmic Auditor. ${ALGO_CORE_LOGIC}
+const AUDIT_SYSTEM_INSTRUCTION = `You are the BangerAgent Algorithmic Auditor. ${ALGO_CORE_LOGIC}
 Goal: Analyze a user's recent tweets to identify algorithmic performance bottlenecks and provide a roadmap for recovery.
 Focus on: Hook degradation, bot-patterns, and shadow-signals.
 YOU MUST RESPOND WITH VALID JSON ONLY. No markdown, no explanations.`;
 
-const NICHE_SYSTEM_INSTRUCTION = `You are the NicheLens Niche Architect. ${ALGO_CORE_LOGIC}
+const NICHE_SYSTEM_INSTRUCTION = `You are the BangerAgent Niche Architect. ${ALGO_CORE_LOGIC}
 Goal: Map out a user's content niche, identify expansion opportunities, and provide a strategic engagement plan.
 Focus on: Authority building, cross-niche overlap, and creator benchmarks.
 YOU MUST RESPOND WITH VALID JSON ONLY. No markdown, no explanations.`;
 
-const IDEA_SYSTEM_INSTRUCTION = `You are the NicheLens Content Architect. ${ALGO_CORE_LOGIC}
+const IDEA_SYSTEM_INSTRUCTION = `You are the BangerAgent Content Architect. ${ALGO_CORE_LOGIC}
 Goal: Take a topic or niche description and generate a high-level content strategy.
 Generate:
 1. A detailed Blog/Article Outline with a magnetic title and sections.
@@ -71,7 +71,17 @@ Focus on: Information density and curiosity gaps.
 YOU MUST RESPOND WITH VALID JSON ONLY. No markdown, no explanations.`;
 
 const cleanJson = (text: string) => {
-  return text.replace(/```json\n?|```/g, "").trim();
+  let cleaned = text.replace(/```json\n?|```/g, "").trim();
+  // Extract the first complete JSON object if the model appended extra text
+  const start = cleaned.indexOf("{");
+  if (start === -1) return cleaned;
+  let depth = 0;
+  for (let i = start; i < cleaned.length; i++) {
+    if (cleaned[i] === "{") depth++;
+    else if (cleaned[i] === "}") depth--;
+    if (depth === 0) return cleaned.slice(start, i + 1);
+  }
+  return cleaned.slice(start);
 };
 
 export async function optimizeTweet(input: string): Promise<OptimizationResult> {
@@ -179,6 +189,6 @@ export async function generateContentIdeas(
 
 export async function generateTweetImage(prompt: string): Promise<string> {
   throw new Error(
-    "Image generation is not available with Claude. Please use Gemini service or integrate with DALL-E."
+    "Image generation is not available with this service."
   );
 }

@@ -39,7 +39,7 @@ const TweetCard: React.FC<TweetCardProps> = ({
     setView(newView);
   };
 
-  // NicheLens dynamic branding colors based on labels
+  // BangerAgent dynamic branding colors based on labels
   const getThemeColor = () => {
     const l = label.toLowerCase();
     if (l.includes('hook') || l.includes('optimize')) return { base: 'blue-500', hex: '#1d9bf0', shadow: 'rgba(29, 155, 240, 0.15)' };
