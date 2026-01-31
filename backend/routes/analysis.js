@@ -8,7 +8,7 @@ const client = new Anthropic({
 });
 
 const FOXY_FRAMEWORKS = `
-FoxyhitsW Content Philosophies (2024-2025):
+BangerAgent Proprietary Content Frameworks (2024-2025):
 1. The Paradox Hook: Start with a contradiction. (e.g., "I worked 80 hours a week and made $0. I worked 2 hours and made $10k.")
 2. Information Gaps: Create a "vacuum" in the first line that the reader feels physical discomfort not filling.
 3. Velocity Control: Use short, punchy lines with deliberate white space to pull the reader down the page (Dwell Time maximization).
@@ -27,7 +27,7 @@ ${FOXY_FRAMEWORKS}
 
 const OPTIMIZE_SYSTEM_INSTRUCTION = `You are NicheLens, a premium X optimization agent. ${ALGO_CORE_LOGIC}
 
-Task: Transform a raw idea into high-dwell, FoxyhitsW-style viral assets.
+Task: Transform a raw idea into high-dwell, proprietary-framework viral assets.
 Framework:
 - Version 1: Hook-focused. Paradoxes and information gaps.
 - Version 2: Reply-maximizing. Polarizing takes on safe topics.
