@@ -25,6 +25,7 @@ const App: React.FC = () => {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const [authReady, setAuthReady] = useState(!isSupabaseConfigured);
   const [user, setUser] = useState<UserState>({ isLoggedIn: false });
   const [state, setState] = useState<OptimizationState>({
     loading: false,
@@ -39,22 +40,33 @@ const App: React.FC = () => {
   });
 
   // Load user session on mount (Cloud or Local)
+  // Wait for Supabase to fully consume the OAuth redirect hash before acting on auth state.
   useEffect(() => {
     if (isSupabaseConfigured && supabase) {
+      let initialSessionResolved = false;
+
       supabase.auth.getSession().then(({ data: { session } }) => {
+        initialSessionResolved = true;
         if (session) {
           handleUserSession(session.user);
         } else {
           loadLocalSession();
         }
+        setAuthReady(true);
       });
 
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-        if (session) {
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        // Ignore events that fire before getSession resolves — these are
+        // the "split-second null" that causes the premature logout.
+        if (!initialSessionResolved) return;
+
+        if (event === 'SIGNED_IN' && session) {
           handleUserSession(session.user);
-        } else {
+        } else if (event === 'SIGNED_OUT') {
           setUser({ isLoggedIn: false });
           setHistory([]);
+        } else if (event === 'TOKEN_REFRESHED' && session) {
+          handleUserSession(session.user);
         }
       });
       return () => subscription.unsubscribe();
@@ -242,6 +254,14 @@ const App: React.FC = () => {
     setMode('ideate');
     setInput(`Pillar content strategy for: ${niche}`);
   };
+
+  if (!authReady) {
+    return (
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-white/10 rounded-full border-t-white animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#050505] text-[#f4f4f5] selection:bg-[#1d9bf0]/20 selection:text-[#1d9bf0]">
