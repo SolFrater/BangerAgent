@@ -67,7 +67,17 @@ Focus on: Information density and curiosity gaps.
 YOU MUST RESPOND WITH VALID JSON ONLY. No markdown, no explanations.`;
 
 const cleanJson = (text) => {
-  return text.replace(/```json\n?|```/g, '').trim();
+  let cleaned = text.replace(/```json\n?|```/g, '').trim();
+  // Extract the first complete JSON object if the model appended extra text
+  const start = cleaned.indexOf('{');
+  if (start === -1) return cleaned;
+  let depth = 0;
+  for (let i = start; i < cleaned.length; i++) {
+    if (cleaned[i] === '{') depth++;
+    else if (cleaned[i] === '}') depth--;
+    if (depth === 0) return cleaned.slice(start, i + 1);
+  }
+  return cleaned.slice(start);
 };
 
 // POST /api/analysis/optimize
