@@ -52,6 +52,6 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 NicheLens Backend running on port ${PORT}`);
+  console.log(`🚀 BangerAgent Backend running on port ${PORT}`);
   console.log(`📊 API available at http://localhost:${PORT}/api`);
 });

@@ -56,12 +56,12 @@ const HowToUse: React.FC = () => {
     <div className="space-y-20 animate-in fade-in duration-1000">
       {/* Documentation Header */}
       <div className="text-center space-y-6 max-w-2xl mx-auto">
-        <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[10px] font-black text-[#1d9bf0] uppercase tracking-[0.4em]">
-          Operations Manual v4.0
+        <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[10px] font-black text-[#ff6b00] uppercase tracking-[0.4em]">
+          BangerAgent Manual v4.0
         </div>
-        <h1 className="text-5xl font-black tracking-tighter text-white uppercase">The NicheLens Protocol</h1>
+        <h1 className="text-5xl font-black tracking-tighter text-white uppercase">The <span className="bg-gradient-to-r from-[#ff6b00] to-[#ff2d55] bg-clip-text text-transparent">BangerAgent</span> Protocol</h1>
         <p className="text-zinc-500 text-lg font-medium leading-relaxed">
-          NicheLens is not a "writing assistant." It is a <span className="text-white">distribution engine</span> designed to engineer outcomes within the fluid ranking systems of the X algorithm.
+          BangerAgent is not a "writing assistant." It is a <span className="text-white">distribution engine</span> designed to engineer outcomes within the fluid ranking systems of the X algorithm.
         </p>
       </div>
 
@@ -151,7 +151,7 @@ const HowToUse: React.FC = () => {
         </div>
         <h4 className="text-zinc-100 font-black uppercase text-sm tracking-[0.2em]">Final Intelligence Note</h4>
         <p className="text-zinc-500 text-sm max-w-xl mx-auto leading-relaxed">
-          The algorithm prioritizes <span className="text-white font-bold italic">Costly Actions</span> (Profile Clicks, Bookmarks) over <span className="text-white font-bold italic">Cheap Actions</span> (Likes). Use NicheLens to engineer the cost, and the reach will follow.
+          The algorithm prioritizes <span className="text-white font-bold italic">Costly Actions</span> (Profile Clicks, Bookmarks) over <span className="text-white font-bold italic">Cheap Actions</span> (Likes). Use BangerAgent to engineer the cost, and the reach will follow.
         </p>
       </div>
     </div>

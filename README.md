@@ -2,7 +2,7 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# NicheLens V3 - Premium X Engagement AI Engine
+# BangerAgent - Premium X Engagement AI Engine
 
 An AI-powered platform for content creators and crypto enthusiasts to optimize their X (Twitter) presence using Claude AI.
 
@@ -73,11 +73,7 @@ Backend will be available at `http://localhost:5000`
 
 ### 3. Supabase Setup (Optional for Cloud Features)
 
-See [supabase/SETUP.md](supabase/SETUP.md) for detailed instructions on:
-- Creating a Supabase project
-- Running migrations
-- Configuring OAuth
-- Setting up analytics
+Configure Supabase environment variables for cloud features (optional).
 
 ## Project Structure
 

@@ -17,10 +17,10 @@ const AnalysisCard: React.FC<AnalysisCardProps> = ({ analysis }) => {
     <div className="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 space-y-10 shadow-2xl animate-in slide-in-from-bottom-3 duration-500">
       <div className="flex justify-between items-center">
         <h3 className="text-xl font-black text-white flex items-center gap-3 uppercase tracking-tighter">
-          <div className="p-2 bg-white/5 rounded-lg text-[#1d9bf0]">
+          <div className="p-2 bg-white/5 rounded-lg text-[#ff6b00]">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
-          NicheLens Intelligence
+          BangerAgent Intelligence
         </h3>
         <span className="text-[10px] bg-white text-black px-2.5 py-1 rounded-md font-black tracking-widest uppercase">Protocol v4.0.1</span>
       </div>
@@ -33,7 +33,7 @@ const AnalysisCard: React.FC<AnalysisCardProps> = ({ analysis }) => {
         
         <div className="space-y-3">
           <h4 className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">Profile-Click Surface</h4>
-          <p className="text-zinc-100 text-sm leading-relaxed border-l-2 border-[#1d9bf0] pl-4 font-bold">{analysis.costlyActionPotential}</p>
+          <p className="text-zinc-100 text-sm leading-relaxed border-l-2 border-[#ff6b00] pl-4 font-bold">{analysis.costlyActionPotential}</p>
         </div>
 
         <div className="space-y-3">
@@ -52,7 +52,7 @@ const AnalysisCard: React.FC<AnalysisCardProps> = ({ analysis }) => {
 
       <div className="pt-8 border-t border-white/5 flex flex-wrap gap-6">
         <div className="text-[9px] text-zinc-500 flex items-center gap-2 uppercase font-black tracking-widest">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#1d9bf0] shadow-[0_0_8px_#1d9bf0]"></span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b00] shadow-[0_0_8px_#ff6b00]"></span>
           Pattern Fracture Active
         </div>
         <div className="text-[9px] text-zinc-500 flex items-center gap-2 uppercase font-black tracking-widest">

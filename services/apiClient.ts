@@ -16,7 +16,7 @@ import {
 } from '../types';
 
 /**
- * NicheLens API Client
+ * BangerAgent API Client
  * This service acts as the orchestration layer between the React UI 
  * and the generative AI backend protocols.
  */
